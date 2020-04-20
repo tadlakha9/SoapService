@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ViewerService" targetNamespace="http://producingSoapMessage.demo.producerCompany.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://producingSoapMessage.demo.producerCompany.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:message name="getReleaseResponse">
+    <wsdl:part name="return" type="xsd:int">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRelease">
+    <wsdl:part name="documentId" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ViewerService">
+    <wsdl:operation name="getRelease">
+      <wsdl:input name="getRelease" message="tns:getRelease">
+    </wsdl:input>
+      <wsdl:output name="getReleaseResponse" message="tns:getReleaseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ViewerServiceSoapBinding" type="tns:ViewerService">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getRelease">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="getRelease">
+        <soap:body use="literal" namespace="http://producingSoapMessage.demo.producerCompany.com/"/>
+      </wsdl:input>
+      <wsdl:output name="getReleaseResponse">
+        <soap:body use="literal" namespace="http://producingSoapMessage.demo.producerCompany.com/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ViewerService">
+    <wsdl:port name="ViewerPort" binding="tns:ViewerServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ViewerPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
